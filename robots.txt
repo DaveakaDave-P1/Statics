@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://daveakadave-p1.github.io/Statics/sitemap.xml
