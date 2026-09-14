@@ -1,61 +1,159 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="ThinkDivisionV Statics tools, calculators, and engineering resources.">
-<title>ThinkDivisionV | Statics Tools</title>
-<style>
-:root{--bg:#08111f;--panel:#0f1b2d;--panel2:#132239;--text:#edf3fb;--muted:#9fb0c7;--line:#263a55;--accent:#58a6ff;--accent2:#7ee787;--danger:#ff7b72;--shadow:0 18px 45px rgba(0,0,0,.28)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#07101d 0%,#0a1423 55%,#08111f 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}
-a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
-nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:rgba(8,17,31,.82);border-bottom:1px solid rgba(255,255,255,.07)}.navin{height:68px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:850;letter-spacing:.2px;font-size:1.08rem}.brand span{color:var(--accent)}.navlinks{display:flex;gap:22px;color:var(--muted);font-size:.94rem}.navlinks a:hover{color:var(--text)}
-.hero{padding:82px 0 52px}.eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:rgba(88,166,255,.08);color:#b8d8ff;border-radius:999px;padding:7px 11px;font-size:.82rem}.hero h1{font-size:clamp(2.4rem,7vw,5.2rem);line-height:.98;letter-spacing:-.05em;margin:18px 0 18px;max-width:900px}.hero h1 em{font-style:normal;color:var(--accent)}.hero p{max-width:720px;color:var(--muted);font-size:1.1rem;margin:0}.heroActions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.btn{border:0;border-radius:10px;padding:11px 15px;font-weight:750;cursor:pointer;font-size:.95rem}.btnPrimary{background:var(--accent);color:#06101d}.btnPrimary:hover{filter:brightness(1.08)}.btnGhost{background:transparent;color:var(--text);border:1px solid var(--line)}
-.section{padding:28px 0 62px}.sectionHead{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}.sectionHead h2{margin:0;font-size:1.65rem}.sectionHead p{margin:0;color:var(--muted);max-width:590px;font-size:.95rem}
-.card{background:linear-gradient(180deg,rgba(19,34,57,.96),rgba(15,27,45,.96));border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.flagship{padding:24px}.badge{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);margin-bottom:7px}.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:20px}.controlPanel{padding:18px;background:rgba(4,12,23,.32);border:1px solid var(--line);border-radius:13px}.controlPanel h3,.diagramPanel h3{margin:0 0 14px}.fieldGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:.82rem;color:var(--muted);font-weight:700}.field input{width:100%;padding:10px 11px;background:#081320;color:var(--text);border:1px solid #314866;border-radius:9px;outline:none}.field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(88,166,255,.12)}
-.loadTitle{display:flex;justify-content:space-between;align-items:center;margin:18px 0 8px}.loadTitle strong{font-size:.9rem}.smallBtn{padding:7px 10px;border-radius:8px;background:#172a43;border:1px solid var(--line);color:var(--text);cursor:pointer;font-weight:700}.loadRow{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-bottom:8px}.loadRow input{min-width:0;padding:9px 10px;background:#081320;color:var(--text);border:1px solid #314866;border-radius:8px}.removeBtn{width:38px;border-radius:8px;border:1px solid #54333a;background:#2a171b;color:#ffaaa3;cursor:pointer}.help{font-size:.78rem;color:var(--muted);margin:8px 0 0}.calcBar{display:flex;gap:9px;margin-top:16px}.calcBar .btn{flex:1}.results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.metric{background:#081320;border:1px solid var(--line);border-radius:11px;padding:12px}.metric span{display:block;font-size:.75rem;color:var(--muted);margin-bottom:4px}.metric b{font-size:1.2rem}.status{margin-top:11px;font-size:.85rem;color:var(--muted)}.status.warn{color:#ffd48a}.status.err{color:var(--danger)}
-.diagramPanel{padding:18px;min-height:100%}.diagramWrap{background:#f7fbff;border-radius:12px;padding:10px;overflow:hidden}.diagramWrap svg{display:block;width:100%;height:280px}.eqBox{margin-top:12px;padding:12px;border-radius:10px;background:#081320;border:1px solid var(--line);color:#c7d7ea;font-size:.86rem}.eqBox code{color:#dce9f7}
-.toolGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.tool{padding:20px}.tool h3{margin:0 0 6px}.tool p{color:var(--muted);font-size:.9rem;margin:0 0 14px}.inlineFields{display:grid;grid-template-columns:1fr 1fr;gap:8px}.inlineFields input{padding:10px;background:#081320;color:var(--text);border:1px solid #314866;border-radius:8px}.toolResult{margin-top:12px;font-weight:800;color:#cfe8ff;min-height:24px}.coming{padding:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.coming div{border:1px solid var(--line);background:#0a1626;padding:14px;border-radius:11px}.coming b{display:block;margin-bottom:3px}.coming span{font-size:.82rem;color:var(--muted)}
-footer{border-top:1px solid rgba(255,255,255,.07);padding:30px 0 42px;color:var(--muted);font-size:.85rem}.footerin{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-@media(max-width:820px){.grid2,.toolGrid{grid-template-columns:1fr}.coming{grid-template-columns:1fr}.navlinks{display:none}.sectionHead{display:block}.sectionHead p{margin-top:6px}.hero{padding-top:58px}}@media(max-width:520px){.fieldGrid,.inlineFields,.results{grid-template-columns:1fr}.loadRow{grid-template-columns:1fr 1fr 36px}.flagship{padding:14px}.wrap{width:min(100% - 20px,1120px)}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Free engineering Statics calculators, support-reaction tools, vector resources, worked explanations, and ThinkDivisionV YouTube tutorials for students.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://daveakadave-p1.github.io/Statics/">
+  <meta property="og:title" content="ThinkDivisionV | Free Statics Calculators & Engineering Tools">
+  <meta property="og:description" content="Check your Statics work, understand the equations, and continue learning with ThinkDivisionV tutorials.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://daveakadave-p1.github.io/Statics/">
+  <title>Free Statics Calculators & Engineering Tools | ThinkDivisionV</title>
+  <style>
+    :root{--bg:#08111f;--panel:#0f1b2d;--panel2:#132239;--text:#edf3fb;--muted:#9fb0c7;--line:#263a55;--accent:#58a6ff;--accent2:#7ee787;--danger:#ff7b72;--shadow:0 18px 45px rgba(0,0,0,.28)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:linear-gradient(180deg,#07101d 0%,#0a1423 55%,#08111f 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.58}
+    a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+    nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:rgba(8,17,31,.88);border-bottom:1px solid rgba(255,255,255,.07)}
+    .navin{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:850;letter-spacing:.2px;font-size:1.08rem}.brand span{color:var(--accent)}.navlinks{display:flex;gap:20px;align-items:center;color:var(--muted);font-size:.92rem}.navlinks a:hover{color:var(--text)}
+    .ytLink{padding:8px 11px;border:1px solid #5d3840;border-radius:9px;color:#ffd7d3;background:rgba(255,123,114,.08)}
+    .hero{padding:78px 0 48px}.eyebrow,.badge{display:inline-flex;gap:8px;align-items:center;font-weight:800}.eyebrow{border:1px solid var(--line);background:rgba(88,166,255,.08);color:#b8d8ff;border-radius:999px;padding:7px 11px;font-size:.82rem}
+    .badge{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);margin-bottom:7px}.hero h1{font-size:clamp(2.35rem,7vw,5rem);line-height:1;letter-spacing:-.05em;margin:18px 0;max-width:950px}.hero h1 em{font-style:normal;color:var(--accent)}.hero p{max-width:760px;color:var(--muted);font-size:1.08rem;margin:0}.heroActions,.ctaActions{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;padding:11px 15px;font-weight:780;cursor:pointer;font-size:.94rem}.btnPrimary{background:var(--accent);color:#06101d}.btnPrimary:hover{filter:brightness(1.08)}.btnGhost{background:transparent;color:var(--text);border:1px solid var(--line)}.btnYoutube{background:#ff7b72;color:#21090b}
+    .section{padding:28px 0 62px}.sectionHead{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}.sectionHead h2{margin:0;font-size:1.65rem}.sectionHead p{margin:0;color:var(--muted);max-width:610px;font-size:.94rem}
+    .card{background:linear-gradient(180deg,rgba(19,34,57,.96),rgba(15,27,45,.96));border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.flagship{padding:24px}.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:20px}
+    .controlPanel,.diagramPanel{padding:18px;background:rgba(4,12,23,.28);border:1px solid var(--line);border-radius:13px}.controlPanel h3,.diagramPanel h3{margin:0 0 14px}.fieldGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:.82rem;color:var(--muted);font-weight:700}.field input{width:100%;padding:10px 11px;background:#081320;color:var(--text);border:1px solid #314866;border-radius:9px;outline:none}.field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(88,166,255,.12)}
+    .loadTitle{display:flex;justify-content:space-between;align-items:center;margin:18px 0 8px}.loadTitle strong{font-size:.9rem}.smallBtn{padding:7px 10px;border-radius:8px;background:#172a43;border:1px solid var(--line);color:var(--text);cursor:pointer;font-weight:700}.loadRow{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-bottom:8px}.loadRow input{min-width:0;padding:9px 10px;background:#081320;color:var(--text);border:1px solid #314866;border-radius:8px}.removeBtn{width:38px;border-radius:8px;border:1px solid #54333a;background:#2a171b;color:#ffaaa3;cursor:pointer}.help{font-size:.79rem;color:var(--muted);margin:8px 0 0}.calcBar{display:flex;gap:9px;margin-top:16px}.calcBar .btn{flex:1}.results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.metric{background:#081320;border:1px solid var(--line);border-radius:11px;padding:12px}.metric span{display:block;font-size:.75rem;color:var(--muted);margin-bottom:4px}.metric b{font-size:1.16rem}.status{margin-top:11px;font-size:.85rem;color:var(--muted)}.status.warn{color:#ffd48a}.status.err{color:var(--danger)}
+    .diagramWrap{background:#f7fbff;border-radius:12px;padding:10px;overflow:hidden}.diagramWrap svg{display:block;width:100%;height:280px}.eqBox{margin-top:12px;padding:12px;border-radius:10px;background:#081320;border:1px solid var(--line);color:#c7d7ea;font-size:.86rem}.eqBox code{color:#dce9f7}
+    .toolGrid,.learnGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.tool,.learnCard{padding:20px}.tool h3,.learnCard h3{margin:0 0 6px}.tool p,.learnCard p{color:var(--muted);font-size:.91rem;margin:0 0 14px}.inlineFields{display:grid;grid-template-columns:1fr 1fr;gap:8px}.inlineFields label{font-size:.78rem;color:var(--muted)}.inlineFields input{width:100%;padding:10px;background:#081320;color:var(--text);border:1px solid #314866;border-radius:8px}.toolResult{margin-top:12px;color:#cfe8ff;min-height:24px}.toolResult b{font-size:1.08rem}.equation{display:block;margin:12px 0;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#081320;color:#d8e8fb;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+    .cta{padding:25px}.cta h2{margin:0 0 8px}.cta p{margin:0;color:var(--muted);max-width:760px}.smallLink{color:#9ac8ff;text-decoration:underline;text-underline-offset:3px}.smallLink:hover{color:#fff}
+    footer{border-top:1px solid rgba(255,255,255,.07);padding:30px 0 42px;color:var(--muted);font-size:.85rem}.footerin{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footerin a{color:#bcd8ff}
+    @media(max-width:860px){.grid2,.toolGrid,.learnGrid{grid-template-columns:1fr}.navlinks{gap:11px}.navlinks .optional{display:none}.sectionHead{display:block}.sectionHead p{margin-top:6px}.hero{padding-top:58px}}
+    @media(max-width:570px){.navlinks a:not(.ytLink){display:none}.fieldGrid,.inlineFields,.results{grid-template-columns:1fr}.loadRow{grid-template-columns:1fr 1fr 36px}.flagship{padding:14px}.wrap{width:min(100% - 20px,1120px)}}
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"ThinkDivisionV Statics Tools","url":"https://daveakadave-p1.github.io/Statics/","description":"Free Statics calculators, engineering explanations, and learning resources from ThinkDivisionV."}
+  </script>
 </head>
 <body>
-<nav><div class="wrap navin"><a class="brand" href="#top">ThinkDivision<span>V</span></a><div class="navlinks"><a href="#reaction">Reaction Solver</a><a href="#tools">Tools</a><a href="#resources">Resources</a></div></div></nav>
+<nav>
+  <div class="wrap navin">
+    <a class="brand" href="index.html" aria-label="ThinkDivisionV home">ThinkDivision<span>V</span></a>
+    <div class="navlinks">
+      <a href="#reaction">Support Reactions</a>
+      <a href="vector-tools.html">Vector Tools</a>
+      <a class="optional" href="#learn">Learn</a>
+      <a class="ytLink" href="https://www.youtube.com/@ThinkDivisionV" target="_blank" rel="noopener">YouTube ↗</a>
+    </div>
+  </div>
+</nav>
 <main id="top">
-<section class="hero"><div class="wrap"><div class="eyebrow">⚙ Statics, explained and checked</div><h1>Engineering tools built for <em>students who want to understand.</em></h1><p>ThinkDivisionV pairs practical Statics explanations with interactive tools you can use to check your work—not replace the reasoning behind it.</p><div class="heroActions"><a class="btn btnPrimary" href="#reaction">Open flagship solver</a><a class="btn btnGhost" href="#tools">Quick calculators</a></div></div></section>
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">⚙ Statics, explained and checked</div>
+    <h1>Free Statics tools built for <em>students who want to understand.</em></h1>
+    <p>Use ThinkDivisionV to check support reactions, moments, force resultants, and vectors—then follow the equations and YouTube explanations so the calculator supports your reasoning instead of replacing it.</p>
+    <div class="heroActions">
+      <a class="btn btnPrimary" href="#reaction">Open support-reaction solver</a>
+      <a class="btn btnGhost" href="vector-tools.html">Open vector calculators</a>
+      <a class="btn btnYoutube" href="https://www.youtube.com/@ThinkDivisionV" target="_blank" rel="noopener">Watch ThinkDivisionV on YouTube</a>
+    </div>
+  </div>
+</section>
 
-<section class="section" id="reaction"><div class="wrap"><div class="sectionHead"><div><span class="badge">Flagship tool</span><h2>2D Support-Reaction Solver</h2></div><p>For a simply supported beam with a pin at A, roller at B, vertical point loads, an optional distributed load, and an applied couple.</p></div>
-<div class="card flagship"><div class="grid2">
-<div class="controlPanel"><h3>Beam inputs</h3><div class="fieldGrid"><div class="field"><label>Beam length L (m)</label><input id="beamL" type="number" min="0.001" step="any" value="6"></div><div class="field"><label>Applied couple M (N·m)</label><input id="couple" type="number" step="any" value="0"></div></div><p class="help">Couple sign: positive = counterclockwise, negative = clockwise.</p>
-<div class="loadTitle"><strong>Point loads (downward)</strong><button class="smallBtn" onclick="addLoad()">+ Add load</button></div><div id="loads"></div>
-<div class="loadTitle"><strong>Optional uniform distributed load</strong></div><div class="fieldGrid"><div class="field"><label>Intensity w (N/m)</label><input id="udlW" type="number" min="0" step="any" value="0"></div><div class="field"><label>Start x₁ (m)</label><input id="udlStart" type="number" min="0" step="any" value="0"></div><div class="field"><label>End x₂ (m)</label><input id="udlEnd" type="number" min="0" step="any" value="0"></div></div>
-<div class="calcBar"><button class="btn btnPrimary" onclick="solveBeam()">Solve reactions</button><button class="btn btnGhost" onclick="resetBeam()">Reset</button></div>
-<div class="results"><div class="metric"><span>Aₓ</span><b id="axOut">0 N</b></div><div class="metric"><span>Aᵧ</span><b id="ayOut">—</b></div><div class="metric"><span>Bᵧ</span><b id="byOut">—</b></div></div><div id="beamStatus" class="status">Enter the beam and loads, then solve.</div></div>
-<div class="diagramPanel"><h3>Free-body preview</h3><div class="diagramWrap"><svg id="beamSvg" viewBox="0 0 720 300" role="img" aria-label="Beam free-body diagram"></svg></div><div class="eqBox"><b>Equilibrium used</b><br><code>ΣFₓ = 0</code> &nbsp; <code>ΣFᵧ = 0</code> &nbsp; <code>ΣMₐ = 0</code><br><span id="equationText">The solver shows the reaction solution here after calculation.</span></div></div>
-</div></div></div></section>
+<section class="section" id="reaction">
+  <div class="wrap">
+    <div class="sectionHead">
+      <div><span class="badge">Flagship tool</span><h2>2D Support-Reaction Solver</h2></div>
+      <p>For a simply supported beam with a pin at A, roller at B, downward point loads, an optional uniform distributed load, and an applied couple.</p>
+    </div>
+    <div class="card flagship"><div class="grid2">
+      <div class="controlPanel">
+        <h3>Beam inputs</h3>
+        <div class="fieldGrid">
+          <div class="field"><label for="beamL">Beam length L (m)</label><input id="beamL" type="number" min="0.001" step="any" value="6"></div>
+          <div class="field"><label for="couple">Applied couple M (N·m)</label><input id="couple" type="number" step="any" value="0"></div>
+        </div>
+        <p class="help">Couple sign: positive = counterclockwise, negative = clockwise.</p>
+        <div class="loadTitle"><strong>Point loads (downward)</strong><button class="smallBtn" type="button" onclick="addLoad()">+ Add load</button></div>
+        <div id="loads"></div>
+        <p class="help">Each row is load magnitude P (N), then position x from A (m).</p>
+        <div class="loadTitle"><strong>Optional uniform distributed load</strong></div>
+        <div class="fieldGrid">
+          <div class="field"><label for="udlW">Intensity w (N/m)</label><input id="udlW" type="number" min="0" step="any" value="0"></div>
+          <div class="field"><label for="udlStart">Start x₁ (m)</label><input id="udlStart" type="number" min="0" step="any" value="0"></div>
+          <div class="field"><label for="udlEnd">End x₂ (m)</label><input id="udlEnd" type="number" min="0" step="any" value="0"></div>
+        </div>
+        <div class="calcBar"><button class="btn btnPrimary" type="button" onclick="solveBeam()">Solve reactions</button><button class="btn btnGhost" type="button" onclick="resetBeam()">Reset</button></div>
+        <div class="results"><div class="metric"><span>Aₓ</span><b id="axOut">0 N</b></div><div class="metric"><span>Aᵧ</span><b id="ayOut">—</b></div><div class="metric"><span>Bᵧ</span><b id="byOut">—</b></div></div>
+        <div id="beamStatus" class="status">Enter the beam and loads, then solve.</div>
+      </div>
+      <div class="diagramPanel">
+        <h3>Free-body preview</h3>
+        <div class="diagramWrap"><svg id="beamSvg" viewBox="0 0 720 300" role="img" aria-label="Beam free-body diagram"></svg></div>
+        <div class="eqBox"><b>Equilibrium used</b><br><code>ΣFₓ = 0</code> &nbsp; <code>ΣFᵧ = 0</code> &nbsp; <code>ΣMₐ = 0</code><br><span id="equationText">The solver shows the equilibrium reasoning after calculation.</span></div>
+      </div>
+    </div></div>
+  </div>
+</section>
 
-<section class="section" id="tools"><div class="wrap"><div class="sectionHead"><div><span class="badge">Quick checks</span><h2>Core Statics calculators</h2></div><p>Fast checks for common calculations. Keep units consistent.</p></div><div class="toolGrid">
-<div class="card tool"><h3>Moment magnitude</h3><p>Uses M = Fd with the perpendicular distance to the line of action.</p><div class="inlineFields"><input id="force" type="number" placeholder="Force (N)"><input id="distance" type="number" placeholder="Distance (m)"></div><button class="btn btnPrimary" style="margin-top:10px" onclick="calcMoment()">Calculate</button><div id="momentResult" class="toolResult"></div></div>
-<div class="card tool"><h3>2D force resultant</h3><p>Combines Cartesian force components and returns magnitude and direction.</p><div class="inlineFields"><input id="fx" type="number" placeholder="Fₓ (N)"><input id="fy" type="number" placeholder="Fᵧ (N)"></div><button class="btn btnPrimary" style="margin-top:10px" onclick="calcResultant()">Calculate</button><div id="resultantResult" class="toolResult"></div></div>
-</div></div></section>
+<section class="section" id="learn">
+  <div class="wrap">
+    <div class="sectionHead"><div><span class="badge">Understand the method</span><h2>How support reactions are found</h2></div><p>The solver is useful only if the free-body diagram and sign convention are correct.</p></div>
+    <div class="learnGrid">
+      <div class="card learnCard"><h3>1. Replace supports with reactions</h3><p>A 2D pin support can supply horizontal and vertical reactions, Aₓ and Aᵧ. A roller on a horizontal surface supplies one vertical reaction, Bᵧ.</p><span class="equation">ΣFₓ = 0</span></div>
+      <div class="card learnCard"><h3>2. Use moment equilibrium</h3><p>Taking moments about A removes Aₓ and Aᵧ from the moment equation. Solve that equation first to obtain Bᵧ, then use vertical-force equilibrium to find Aᵧ.</p><span class="equation">ΣMₐ = 0 → Bᵧ &nbsp; | &nbsp; ΣFᵧ = 0 → Aᵧ</span></div>
+    </div>
+  </div>
+</section>
 
-<section class="section" id="resources"><div class="wrap"><div class="sectionHead"><div><span class="badge">Next</span><h2>ThinkDivisionV learning hub</h2></div><p>The site is intentionally starting small. These are the next useful pieces to build around the YouTube channel.</p></div><div class="card coming"><div><b>Practice problems</b><span>Original problems with diagrams, hints, and worked solutions.</span></div><div><b>Video library</b><span>Organized Statics videos by concept instead of random problem numbers.</span></div><div><b>More interactive tools</b><span>Trusses, centroids, friction, and equilibrium checkers based on student demand.</span></div></div></div></section>
+<section class="section" id="tools">
+  <div class="wrap">
+    <div class="sectionHead"><div><span class="badge">Quick checks</span><h2>Core Statics calculators</h2></div><p>Fast checks for common calculations. For more vector operations and explanations, use the dedicated vector tools page.</p></div>
+    <div class="toolGrid">
+      <div class="card tool">
+        <h3>Moment magnitude</h3><p>Uses the perpendicular distance from the point to the force's line of action.</p>
+        <span class="equation">M = Fd⊥</span>
+        <div class="inlineFields"><div><label for="force">Force F (N)</label><input id="force" type="number" placeholder="e.g. 250"></div><div><label for="distance">Perpendicular distance d (m)</label><input id="distance" type="number" placeholder="e.g. 1.5"></div></div>
+        <button class="btn btnPrimary" style="margin-top:10px" type="button" onclick="calcMoment()">Calculate</button><div id="momentResult" class="toolResult"></div>
+      </div>
+      <div class="card tool">
+        <h3>2D force resultant</h3><p>Combines Cartesian components to return resultant magnitude and direction measured from +x.</p>
+        <span class="equation">R = √(Fₓ² + Fᵧ²) &nbsp; | &nbsp; θ = atan2(Fᵧ,Fₓ)</span>
+        <div class="inlineFields"><div><label for="fx">Fₓ (N)</label><input id="fx" type="number" placeholder="e.g. 300"></div><div><label for="fy">Fᵧ (N)</label><input id="fy" type="number" placeholder="e.g. 400"></div></div>
+        <button class="btn btnPrimary" style="margin-top:10px" type="button" onclick="calcResultant()">Calculate</button><div id="resultantResult" class="toolResult"></div>
+        <p class="help">Need vector addition, dot product, force components, or multiple forces? <a class="smallLink" href="vector-tools.html">Open Statics Vector Tools →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="videos">
+  <div class="wrap">
+    <div class="card cta">
+      <span class="badge">Need the explanation?</span>
+      <h2>Use the calculator to check. Use the video to understand.</h2>
+      <p>If you are not sure why a reaction, component, or resultant equation works, continue with ThinkDivisionV's Statics walkthroughs on YouTube.</p>
+      <div class="ctaActions"><a class="btn btnYoutube" href="https://www.youtube.com/@ThinkDivisionV" target="_blank" rel="noopener">Watch Statics tutorials on YouTube</a><a class="btn btnGhost" href="vector-tools.html">Practice with vector tools</a></div>
+    </div>
+  </div>
+</section>
 </main>
-<footer><div class="wrap footerin"><span>© ThinkDivisionV — engineering education resources.</span><span>Educational tool. Always verify assumptions and signs independently.</span></div></footer>
+<footer><div class="wrap footerin"><span>© ThinkDivisionV — engineering education resources.</span><span><a href="vector-tools.html">Vector Tools</a> · <a href="https://www.youtube.com/@ThinkDivisionV" target="_blank" rel="noopener">YouTube</a> · Educational tool: always verify assumptions and signs.</span></div></footer>
 <script>
 const loadsEl=document.getElementById('loads');
-function addLoad(p=500,x=2){const row=document.createElement('div');row.className='loadRow';row.innerHTML=`<input class="pLoad" type="number" min="0" step="any" value="${p}" aria-label="Point load magnitude"><input class="xLoad" type="number" min="0" step="any" value="${x}" aria-label="Point load position"><button class="removeBtn" title="Remove load" onclick="this.parentElement.remove();drawBeam()">×</button>`;loadsEl.appendChild(row);row.querySelectorAll('input').forEach(i=>i.addEventListener('input',drawBeam));drawBeam();}
+function addLoad(p=500,x=2){const row=document.createElement('div');row.className='loadRow';row.innerHTML=`<input class="pLoad" type="number" min="0" step="any" value="${p}" aria-label="Point load magnitude in newtons"><input class="xLoad" type="number" min="0" step="any" value="${x}" aria-label="Point load position from A in meters"><button class="removeBtn" title="Remove load" type="button" onclick="this.parentElement.remove();drawBeam()">×</button>`;loadsEl.appendChild(row);row.querySelectorAll('input').forEach(i=>i.addEventListener('input',drawBeam));drawBeam();}
 function num(id){return parseFloat(document.getElementById(id).value)}
 function getLoads(){return [...document.querySelectorAll('.loadRow')].map(r=>({p:parseFloat(r.querySelector('.pLoad').value),x:parseFloat(r.querySelector('.xLoad').value)})).filter(o=>Number.isFinite(o.p)&&Number.isFinite(o.x));}
-function fmt(v,u){if(!Number.isFinite(v))return '—';const a=Math.abs(v);const s=a>=1000?v.toFixed(1):v.toFixed(2);return `${s} ${u}`}
-function solveBeam(){const L=num('beamL'),M=num('couple')||0,w=num('udlW')||0,x1=num('udlStart')||0,x2=num('udlEnd')||0,loads=getLoads(),status=document.getElementById('beamStatus');if(!(L>0)){status.className='status err';status.textContent='Beam length must be greater than zero.';return}if(loads.some(q=>q.p<0||q.x<0||q.x>L)){status.className='status err';status.textContent='Each point load must be nonnegative and positioned between 0 and L.';return}if(w<0||x1<0||x2<0||x1>L||x2>L||x2<x1){status.className='status err';status.textContent='Check the distributed-load intensity and start/end positions.';return}const W=w*(x2-x1),xW=(x1+x2)/2;const totalP=loads.reduce((s,q)=>s+q.p,0)+W;const momentLoads=loads.reduce((s,q)=>s+q.p*q.x,0)+W*xW;const By=(momentLoads-M)/L;const Ay=totalP-By;document.getElementById('axOut').textContent='0.00 N';document.getElementById('ayOut').textContent=fmt(Ay,'N');document.getElementById('byOut').textContent=fmt(By,'N');document.getElementById('equationText').textContent=`ΣMₐ: Bᵧ(${L}) − ${momentLoads.toFixed(2)} + (${M.toFixed(2)}) = 0.  ΣFᵧ: Aᵧ + Bᵧ − ${totalP.toFixed(2)} = 0.`;if(Ay<0||By<0){status.className='status warn';status.textContent='Solved. A negative reaction indicates the assumed upward reaction acts downward (possible uplift/contact issue).';}else{status.className='status';status.textContent='Solved using static equilibrium. Positive reactions are upward.';}drawBeam({Ay,By});}
-function drawBeam(sol=null){const svg=document.getElementById('beamSvg'),L=num('beamL');if(!(L>0)){svg.innerHTML='';return}const loads=getLoads(),w=num('udlW')||0,x1=num('udlStart')||0,x2=num('udlEnd')||0;const left=70,right=650,y=155,S=(right-left)/L;let s=`<defs><marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#d62f2f"/></marker><marker id="react" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1677c8"/></marker></defs>`;s+=`<line x1="${left}" y1="${y}" x2="${right}" y2="${y}" stroke="#162b44" stroke-width="10" stroke-linecap="round"/><polygon points="${left},${y+5} ${left-18},${y+35} ${left+18},${y+35}" fill="#66788d"/><circle cx="${right}" cy="${y+26}" r="10" fill="#66788d"/><line x1="${right-20}" y1="${y+38}" x2="${right+20}" y2="${y+38}" stroke="#66788d" stroke-width="4"/>`;s+=`<text x="${left-5}" y="${y+58}" font-size="15" fill="#25364a">A</text><text x="${right-5}" y="${y+58}" font-size="15" fill="#25364a">B</text><text x="${left-8}" y="${y+78}" font-size="12" fill="#526a84">0 m</text><text x="${right-18}" y="${y+78}" font-size="12" fill="#526a84">${L} m</text>`;loads.forEach(q=>{if(q.x>=0&&q.x<=L){const X=left+q.x*S;s+=`<line x1="${X}" y1="${y-78}" x2="${X}" y2="${y-16}" stroke="#d62f2f" stroke-width="3" marker-end="url(#arr)"/><text x="${X}" y="${y-88}" text-anchor="middle" font-size="13" fill="#9b1c1c">${q.p} N @ ${q.x} m</text>`}});if(w>0&&x2>x1&&x1>=0&&x2<=L){const X1=left+x1*S,X2=left+x2*S;for(let X=X1;X<=X2;X+=Math.max(22,(X2-X1)/8)){s+=`<line x1="${X}" y1="${y-52}" x2="${X}" y2="${y-14}" stroke="#b56b00" stroke-width="2" marker-end="url(#arr)"/>`}s+=`<line x1="${X1}" y1="${y-55}" x2="${X2}" y2="${y-55}" stroke="#b56b00" stroke-width="3"/><text x="${(X1+X2)/2}" y="${y-66}" text-anchor="middle" font-size="13" fill="#825000">w = ${w} N/m</text>`}if(sol){const arrow=(x,val,label)=>{const upward=val>=0,y1=upward?y+85:y-5,y2=upward?y+18:y-72;return `<line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}" stroke="#1677c8" stroke-width="3" marker-end="url(#react)"/><text x="${x+9}" y="${upward?y+91:y-78}" font-size="13" fill="#105a96">${label}=${val.toFixed(1)} N</text>`};s+=arrow(left,sol.Ay,'Ay')+arrow(right,sol.By,'By')}svg.innerHTML=s;}
-function resetBeam(){document.getElementById('beamL').value=6;document.getElementById('couple').value=0;document.getElementById('udlW').value=0;document.getElementById('udlStart').value=0;document.getElementById('udlEnd').value=0;loadsEl.innerHTML='';addLoad(500,2);addLoad(300,4.5);document.getElementById('axOut').textContent='0 N';document.getElementById('ayOut').textContent='—';document.getElementById('byOut').textContent='—';document.getElementById('beamStatus').className='status';document.getElementById('beamStatus').textContent='Enter the beam and loads, then solve.';document.getElementById('equationText').textContent='The solver shows the reaction solution here after calculation.';drawBeam();}
-function calcMoment(){const f=num('force'),d=num('distance'),el=document.getElementById('momentResult');el.textContent=(Number.isFinite(f)&&Number.isFinite(d))?`M = ${(f*d).toFixed(2)} N·m`:'Enter both values.'}
-function calcResultant(){const fx=num('fx'),fy=num('fy'),el=document.getElementById('resultantResult');if(!Number.isFinite(fx)||!Number.isFinite(fy)){el.textContent='Enter both values.';return}const r=Math.hypot(fx,fy),a=Math.atan2(fy,fx)*180/Math.PI;el.textContent=`R = ${r.toFixed(2)} N at ${a.toFixed(2)}° from +x`;}
-['beamL','couple','udlW','udlStart','udlEnd'].forEach(id=>document.getElementById(id).addEventListener('input',drawBeam));addLoad(500,2);addLoad(300,4.5);drawBeam();
+function fmt(v,u){if(!Number.isFinite(v))return '—';const s=Math.abs(v)>=1000?v.toFixed(1):v.toFixed(2);return `${s} ${u}`}
+function solveBeam(){const L=num('beamL'),M=num('couple')||0,w=num('udlW')||0,x1=num('udlStart')||0,x2=num('udlEnd')||0,loads=getLoads(),status=document.getElementById('beamStatus');if(!(L>0)){status.className='status err';status.textContent='Beam length must be greater than zero.';return}if(loads.some(q=>q.p<0||q.x<0||q.x>L)){status.className='status err';status.textContent='Each point load must be nonnegative and positioned between 0 and L.';return}if(w<0||x1<0||x2<0||x1>L||x2>L||x2<x1){status.className='status err';status.textContent='Check the distributed-load intensity and start/end positions.';return}const W=w*(x2-x1),xW=(x1+x2)/2,totalP=loads.reduce((s,q)=>s+q.p,0)+W,momentLoads=loads.reduce((s,q)=>s+q.p*q.x,0)+W*xW,By=(momentLoads-M)/L,Ay=totalP-By;document.getElementById('axOut').textContent='0.00 N';document.getElementById('ayOut').textContent=fmt(Ay,'N');document.getElementById('byOut').textContent=fmt(By,'N');status.className='status';status.textContent='Solved from equilibrium. A negative reaction means the actual direction is opposite the assumed upward direction.';document.getElementById('equationText').textContent=`About A: Bᵧ(${L}) + M − Σ(Px) − W(x̄) = 0 → Bᵧ = ${By.toFixed(2)} N. Then ΣFᵧ = 0 → Aᵧ = ${Ay.toFixed(2)} N.`;drawBeam(Ay,By);}
+function resetBeam(){document.getElementById('beamL').value=6;document.getElementById('couple').value=0;document.getElementById('udlW').value=0;document.getElementById('udlStart').value=0;document.getElementById('udlEnd').value=0;loadsEl.innerHTML='';addLoad(500,2);addLoad(300,4.5);['ayOut','byOut'].forEach(id=>document.getElementById(id).textContent='—');document.getElementById('axOut').textContent='0 N';document.getElementById('equationText').textContent='The solver shows the equilibrium reasoning after calculation.';document.getElementById('beamStatus').textContent='Enter the beam and loads, then solve.';drawBeam();}
+function drawBeam(Ay=null,By=null){const svg=document.getElementById('beamSvg'),L=num('beamL')||6,loads=getLoads(),w=num('udlW')||0,x1=num('udlStart')||0,x2=num('udlEnd')||0,left=70,right=650,y=165,scale=(right-left)/Math.max(L,.001),parts=[];parts.push(`<line x1="${left}" y1="${y}" x2="${right}" y2="${y}" stroke="#18283a" stroke-width="9" stroke-linecap="round"/>`);parts.push(`<polygon points="${left},${y+4} ${left-18},${y+34} ${left+18},${y+34}" fill="#59718d"/><line x1="${left-28}" y1="${y+38}" x2="${left+28}" y2="${y+38}" stroke="#59718d" stroke-width="4"/>`);parts.push(`<circle cx="${right}" cy="${y+24}" r="9" fill="#59718d"/><line x1="${right-28}" y1="${y+38}" x2="${right+28}" y2="${y+38}" stroke="#59718d" stroke-width="4"/>`);parts.push(`<text x="${left-5}" y="${y+62}" fill="#20354d" font-size="18" font-weight="700">A</text><text x="${right-5}" y="${y+62}" fill="#20354d" font-size="18" font-weight="700">B</text>`);loads.forEach(q=>{const x=left+q.x*scale;parts.push(`<line x1="${x}" y1="55" x2="${x}" y2="${y-10}" stroke="#d44c45" stroke-width="4"/><polygon points="${x},${y-3} ${x-8},${y-18} ${x+8},${y-18}" fill="#d44c45"/><text x="${x+8}" y="70" fill="#9a312c" font-size="14">${q.p} N</text>`)});if(w>0&&x2>x1){const xa=left+x1*scale,xb=left+x2*scale;for(let x=xa;x<=xb;x+=Math.max(24,(xb-xa)/8)){parts.push(`<line x1="${x}" y1="85" x2="${x}" y2="${y-10}" stroke="#d58a22" stroke-width="2"/><polygon points="${x},${y-3} ${x-6},${y-15} ${x+6},${y-15}" fill="#d58a22"/>`)}parts.push(`<text x="${(xa+xb)/2-25}" y="77" fill="#9a621d" font-size="14">w=${w} N/m</text>`)}if(Ay!==null){parts.push(`<line x1="${left}" y1="${y+5}" x2="${left}" y2="245" stroke="#18804b" stroke-width="4"/><polygon points="${left},${y-3} ${left-8},${y+12} ${left+8},${y+12}" fill="#18804b"/><text x="${left+8}" y="244" fill="#11643a" font-size="14">Aᵧ ${Ay.toFixed(1)} N</text>`)}if(By!==null){parts.push(`<line x1="${right}" y1="${y+5}" x2="${right}" y2="245" stroke="#18804b" stroke-width="4"/><polygon points="${right},${y-3} ${right-8},${y+12} ${right+8},${y+12}" fill="#18804b"/><text x="${right-112}" y="244" fill="#11643a" font-size="14">Bᵧ ${By.toFixed(1)} N</text>`)}svg.innerHTML=parts.join('');}
+function calcMoment(){const F=num('force'),d=num('distance'),out=document.getElementById('momentResult');if(!Number.isFinite(F)||!Number.isFinite(d)){out.textContent='Enter both F and d⊥.';return}const M=F*d;out.innerHTML=`Given F = ${F} N and d⊥ = ${d} m<br>M = Fd⊥ = (${F})(${d})<br><b>M = ${M.toFixed(3)} N·m</b>`;}
+function calcResultant(){const x=num('fx'),y=num('fy'),out=document.getElementById('resultantResult');if(!Number.isFinite(x)||!Number.isFinite(y)){out.textContent='Enter both Fₓ and Fᵧ.';return}const R=Math.hypot(x,y),a=Math.atan2(y,x)*180/Math.PI;out.innerHTML=`Given Fₓ = ${x} N and Fᵧ = ${y} N<br>R = √(${x}² + ${y}²)<br><b>R = ${R.toFixed(3)} N at θ = ${a.toFixed(2)}° from +x</b>`;}
+['beamL','couple','udlW','udlStart','udlEnd'].forEach(id=>document.getElementById(id).addEventListener('input',drawBeam));
+resetBeam();
 </script>
 </body>
 </html>
